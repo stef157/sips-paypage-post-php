@@ -25,9 +25,9 @@ function compute_seal($hmac256, $data, $secretKey)
       $secretKeyUtf8 = iconv($serverEncoding, "UTF-8", $secretKey);
    }
    if($hmac256){
-      $seal = hash_hmac('sha256', $data, $secretKey);
+      $seal = hash_hmac('sha256', $dataUtf8, $secretKeyUtf8);
    }else{
-      $seal = hash('sha256',  $data.$secretKey);
+      $seal = hash('sha256',  $dataUtf8.$secretKeyUtf8);
    }
    return $seal;
 }
